@@ -5,6 +5,21 @@ package com.libin.factory.reflex_factory;
  */
 
 public class JiliCarFactory extends JiLiFactory {
+    private static JiliCarFactory mFactory;
+
+    private JiliCarFactory() {
+    }
+
+    public static JiliCarFactory getInstance(){
+        if(mFactory != null){
+            return mFactory;
+        }
+
+        mFactory = new JiliCarFactory();
+
+        return mFactory;
+    }
+
     @Override
     public <T extends JiLiCar> T createJiliCar(Class<T> clz) {
         JiLiCar jiLiCar = null;
