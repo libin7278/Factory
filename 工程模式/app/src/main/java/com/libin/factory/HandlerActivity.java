@@ -7,6 +7,9 @@ import android.os.Bundle;
 
 import java.lang.ref.WeakReference;
 
+/**
+ * Handler 优化
+ */
 public class HandlerActivity extends AppCompatActivity {
 
     @Override

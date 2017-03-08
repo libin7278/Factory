@@ -18,12 +18,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mHandler = HandlerUtil.getInstance(this);
-        Message message = new Message();
-        message.what = 1;
-        message.obj = "lala";
-        mHandler.sendMessage(message) ;
+        handlerTest();
 
+        factoryTest();
+    }
+
+    private void factoryTest() {
         JiLIBoYue jiLIBoYue = JiliCarFactory.getInstance().createJiliCar(JiLIBoYue.class);
         jiLIBoYue.driver();
         jiLIBoYue.selgVavigator();
@@ -31,5 +31,13 @@ public class MainActivity extends AppCompatActivity {
         JILiDiHao jiLiDiHao = JiliCarFactory.getInstance().createJiliCar(JILiDiHao.class);
         jiLiDiHao.driver();
         jiLiDiHao.selgVavigator();
+    }
+
+    void handlerTest(){
+        mHandler = HandlerUtil.getInstance(this);
+        Message message = new Message();
+        message.what = 1;
+        message.obj = "lala";
+        mHandler.sendMessage(message) ;
     }
 }
