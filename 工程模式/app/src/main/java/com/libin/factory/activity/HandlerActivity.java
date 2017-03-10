@@ -1,9 +1,11 @@
-package com.libin.factory;
+package com.libin.factory.activity;
 
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.libin.factory.R;
 
 import java.lang.ref.WeakReference;
 

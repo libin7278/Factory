@@ -8,7 +8,7 @@ import android.os.Looper;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.libin.factory.MainActivity;
+import com.libin.factory.activity.MainActivity;
 import com.libin.factory.MainApplication;
 import com.libin.factory.Utils.CommonUtils;
 import com.libin.factory.Utils.PreferencesUtility;

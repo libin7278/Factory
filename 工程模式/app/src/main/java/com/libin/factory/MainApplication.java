@@ -1,15 +1,15 @@
 package com.libin.factory;
 
-import android.app.Application;
 import android.content.Context;
 
 import com.libin.factory.handler.UnceHandler;
+import com.libin.request_business.SolidApplication;
 
 /**
  * Created by doudou on 2017/3/7.
  */
 
-public class MainApplication extends Application {
+public class MainApplication extends SolidApplication {
 
     private static MainApplication mainApplication ;
 
