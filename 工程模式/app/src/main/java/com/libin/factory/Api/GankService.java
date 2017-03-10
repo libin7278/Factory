@@ -1,15 +1,16 @@
 package com.libin.factory.Api;
 
+import com.libin.factory.Entity.GanHuoDataBean;
+import com.libin.factory.Entity.GanHuoRecentlyBean;
+import com.libin.factory.Entity.GanHuoTitleBean;
+import com.libin.factory.Entity.SearchResult;
+import com.libin.request_business.subscriber.HttpResult;
+
 import java.util.List;
 
-import ren.solid.ganhuoio.model.bean.GanHuoDataBean;
-import ren.solid.ganhuoio.model.bean.GanHuoRecentlyBean;
-import ren.solid.ganhuoio.model.bean.GanHuoTitleBean;
-import ren.solid.ganhuoio.model.bean.SearchResult;
-import ren.solid.library.rx.retrofit.HttpResult;
+import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
-import rx.Observable;
 
 /**
  * Created by _SOLID

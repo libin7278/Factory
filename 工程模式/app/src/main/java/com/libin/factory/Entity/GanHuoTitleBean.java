@@ -1,11 +1,13 @@
 package com.libin.factory.Entity;
 
+import com.libin.request_business.subscriber.HttpResult;
+
 /**
  * Created by _SOLID
  * Date:2016/8/3
  * Time:10:06
  */
-public class GanHuoTitleBean {
+public class GanHuoTitleBean extends HttpResult {
 
     private String _id;
     private String content;
