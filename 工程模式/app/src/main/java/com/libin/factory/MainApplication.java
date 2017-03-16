@@ -1,31 +1,27 @@
 package com.libin.factory;
 
-import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+import android.os.Environment;
 
+import com.libin.core.CoreApplication;
+import com.libin.factory.green_dao.dao.DaoMaster;
+import com.libin.factory.green_dao.dao.DaoSession;
 import com.libin.factory.handler.UnceHandler;
-import com.libin.request_business.SolidApplication;
+
+import java.io.File;
 
 /**
  * Created by doudou on 2017/3/7.
  */
 
-public class MainApplication extends SolidApplication {
-
-    private static MainApplication mainApplication ;
-
-    /**
-     *
-     * @return
-     */
-    public static Context getContext(){
-        return mainApplication.getApplicationContext();
-    }
+public class MainApplication extends CoreApplication {
+    private static DaoSession daoSession;
 
     @Override
     public void onCreate() {
         super.onCreate();
 
-        mainApplication = this ;
+        setupDatabase();
 
         initCatchException();
     }
@@ -36,4 +32,30 @@ public class MainApplication extends SolidApplication {
         UnceHandler catchExcep = new UnceHandler(this);
         Thread.setDefaultUncaughtExceptionHandler(catchExcep);
     }
+
+    @Override
+    public File getFilesDir() {
+        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+            File cacheDir = getExternalCacheDir();
+            if (cacheDir != null && (cacheDir.exists() || cacheDir.mkdirs())) {
+                return cacheDir;
+            }
+        }
+        return super.getCacheDir();
+    }
+
+    /**
+     *  配置数据库
+     */
+    private void setupDatabase() {
+        DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(this, "shop.db", null);
+        SQLiteDatabase db = helper.getWritableDatabase();
+        DaoMaster daoMaster = new DaoMaster(db);
+        daoSession = daoMaster.newSession();
+    }
+
+    public static DaoSession getDaoInstant() {
+        return daoSession;
+    }
+
 }

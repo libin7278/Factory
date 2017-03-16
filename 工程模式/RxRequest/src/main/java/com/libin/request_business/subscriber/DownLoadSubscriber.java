@@ -3,7 +3,7 @@ package com.libin.request_business.subscriber;
 import android.os.Handler;
 import android.os.Looper;
 
-import com.libin.request_business.SolidApplication;
+import com.libin.request_business.RxApplication;
 import com.libin.request_business.utils.FileUtils;
 
 import org.reactivestreams.Subscriber;
@@ -28,7 +28,7 @@ public abstract class DownLoadSubscriber implements Subscriber<ResponseBody> {
     private File mFile;
 
     public DownLoadSubscriber(@NonNull String fileName) {
-        mSaveFilePath = FileUtils.getCacheDir(SolidApplication.getContext()).getAbsolutePath();
+        mSaveFilePath = FileUtils.getCacheDir(RxApplication.getContext()).getAbsolutePath();
         mFile = new File(mSaveFilePath + File.separator + fileName);
     }
 

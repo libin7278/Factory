@@ -10,4 +10,37 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.libin.factory.activity.GreenDaoAvtivity">
 
+    <Button
+        android:text="增"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/btn_add" />
+
+    <Button
+        android:text="删"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/btn_add"
+        android:layout_toEndOf="@+id/btn_add"
+        android:layout_marginStart="14dp"
+        android:id="@+id/btn_delete" />
+
+    <Button
+        android:text="改"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/btn_delete"
+        android:layout_marginStart="22dp"
+        android:id="@+id/btn_update" />
+
+    <Button
+        android:text="查"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_add"
+        android:layout_alignParentStart="true"
+        android:id="@+id/btn_query" />
 </RelativeLayout>

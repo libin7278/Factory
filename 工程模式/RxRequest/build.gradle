@@ -1,4 +1,31 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
+//apply plugin: 'com.novoda.bintray-release'
+
+//publish {
+//    userOrg = 'libinlib' //你的用户名
+//    groupId = 'com.jason.rxrequest' //你的唯一的groupId，对应com.squareup.okhttp3:okhttp:3.4.1中的com.squareup.okhttp3
+//    artifactId = 'Rx_Request' //你的library的名字，对应com.squareup.okhttp3:okhttp:3.4.1中的okhttp
+//    publishVersion = '0.0.1' //版本号
+//    desc = '结合 Rxjava2 + retrofit2 封装的完美联网框架'
+//    website = '\thttps://github.com/libin7278/Factory' //建议填写github地址，不过不影响，这里做演示填的自己的网址
+//
+//    bintrayUser = 'libinlib' //你的用户名
+//    bintrayKey = '8e8ed698b10c1c0223e309027711ea64f1c8c2b3' //在你的账户里面查找
+//}
+
+//publish {
+//    userOrg = 'jasonpRxRequestRxRequest'//bintray.com用户名
+//    groupId = 'com.jason.rxrequest'//jcenter上的路径
+//    artifactId = 'RxRequest'//项目名称
+//    publishVersion = '1.0.0'//版本号
+//    desc = '结合 Rxjava2 + retrofit2 封装的完美联网框架'//描述，不重要
+//    website = 'https://github.com/libin7278/Factory'//网站，不重要；尽量模拟github上的地址，例如我这样的；当然你有地址最好了
+//
+//    bintrayUser = 'libin7278jc' //你的用户名
+//    bintrayKey = '3e1fb10e4e7d850e068ea5fee9acc72316a8f121' //在你的账户里面查找
+//}
 
 android {
     compileSdkVersion 25
@@ -19,6 +46,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    lintOptions {
+        abortOnError false
+    }
 }
 
 dependencies {
@@ -32,7 +63,8 @@ dependencies {
     compile 'com.squareup.retrofit2:converter-gson:2.2.0'
     compile 'com.squareup.retrofit2:retrofit-converters:2.2.0'
     //compile 'com.squareup.retrofit2:adapter-rxjava2:2.2.0' 现在只支持到rxjava1.XX
-    compile 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'// 大神写的这个库可以支持到rxjava2.X
+    compile 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
+    // 大神写的这个库可以支持到rxjava2.X
     //RxAndroid
     compile 'io.reactivex.rxjava2:rxjava:2.0.7'
     compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
@@ -40,4 +72,77 @@ dependencies {
     compile 'com.squareup.okhttp3:okhttp:3.6.0'
     compile 'com.squareup.okhttp3:logging-interceptor:3.6.0'
     compile 'com.google.code.gson:gson:2.8.0'
+    compile project(':core')
+}
+
+def siteUrl = 'https://github.com/libin7278/Factory'   // 项目的主页
+def gitUrl = 'https://github.com/libin7278/Factory.git'   // Git仓库的url
+group = "com.libin.rxrequest"            // Maven Group ID for the artifact，一般填你唯一的包名 发布到组织名称名字，必须填写
+//发布到JCenter上的项目名字，必须填写
+def libName = "AndroidFastDevFrame"
+// 版本号，下次更新是只需要更改版本号即可
+version = "1.0.0"
+install {
+    repositories.mavenInstaller {
+        // This generates POM.xml with proper parameters
+        pom {
+            project {
+                packaging 'aar'
+                // Add your description here
+                name '结合 Rxjava2 + retrofit2 封装的完美联网框架'     //项目的描述 你可以多写一点
+                url siteUrl
+                // Set your license
+                licenses {
+                    license {
+                        name 'Rxjava2 + retrofit2'
+                        url 'https://github.com/libin7278/Factory'
+                    }
+                }
+                developers {
+                    developer {
+                        id 'libin'        //填写的一些基本信息
+                        name 'Jason'
+                        email 'Jasonlibin2@gmail.com'
+                    }
+                }
+                scm {
+                    connection gitUrl
+                    developerConnection gitUrl
+                    url siteUrl
+                }
+            }
+        }
+    }
+}
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+task javadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+bintray {
+    user = "libin7278jc"
+    key = "3e1fb10e4e7d850e068ea5fee9acc72316a8f121"
+    configurations = ['archives']
+    pkg {
+        userOrg="jasonp"
+        repo = "RxRequest"
+        name = "RxRequest"    //发布到JCenter上的项目名字
+        websiteUrl = siteUrl
+        vcsUrl = gitUrl
+        licenses = ["Apache-2.0"]
+        publish = true
+    }
 }

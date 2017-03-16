@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/RxRequest/RxRequest.iml" filepath="$PROJECT_DIR$/RxRequest/RxRequest.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/core/core.iml" filepath="$PROJECT_DIR$/core/core.iml" />
-      <module fileurl="file://$PROJECT_DIR$/request-business/request-business.iml" filepath="$PROJECT_DIR$/request-business/request-business.iml" />
       <module fileurl="file://$PROJECT_DIR$/工程模式.iml" filepath="$PROJECT_DIR$/工程模式.iml" />
     </modules>
   </component>
