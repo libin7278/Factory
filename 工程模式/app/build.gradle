@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'org.greenrobot.greendao'
 
 android {
     compileSdkVersion 25
@@ -18,6 +19,17 @@ android {
         }
     }
 
+    lintOptions {
+        abortOnError false
+    }
+
+    greendao {
+        schemaVersion 1  //对应当前数据库版本
+        daoPackage 'com.libin.factory.green_dao.dao' //由GreenDao自动生成代码所在的包名 自定义
+        targetGenDir 'src/main/java' //设置自动生成代码的目录
+    }
+
+
 }
 
 
@@ -28,6 +40,7 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:25.2.0'
     testCompile 'junit:junit:4.12'
-    compile project(':request-business')
-    compile project(':core')
+    compile project(':RxRequest')
+    //GreenDao3
+    compile 'org.greenrobot:greendao:3.2.0'
 }

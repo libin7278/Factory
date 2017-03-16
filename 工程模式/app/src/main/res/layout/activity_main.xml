@@ -11,11 +11,37 @@
     tools:context="com.libin.factory.activity.MainActivity">
 
     <Button
-        android:text="RxJava+retrofite"
+        android:id="@+id/btn_rx_rt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:layout_marginStart="11dp"
-        android:id="@+id/btn_rx_rt" />
+        android:text="RxJava+retrofite" />
+
+    <Button
+        android:id="@+id/btn_mvp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/btn_rx_rt"
+        android:layout_marginStart="17dp"
+        android:layout_toEndOf="@+id/btn_rx_rt"
+        android:text="mvp" />
+
+    <Button
+        android:id="@+id/btn_greendao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/btn_rx_rt"
+        android:layout_below="@+id/btn_rx_rt"
+        android:layout_marginTop="14dp"
+        android:text="GreenDao" />
+
+    <com.libin.factory.widget.RoundCornerImageView
+        android:src="@drawable/bg_test"
+        android:id="@+id/rciv"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignTop="@+id/btn_greendao"
+        android:layout_toStartOf="@+id/btn_mvp" />
 </RelativeLayout>

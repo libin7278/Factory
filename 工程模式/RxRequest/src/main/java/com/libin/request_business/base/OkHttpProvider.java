@@ -2,7 +2,7 @@ package com.libin.request_business.base;
 
 import android.text.TextUtils;
 
-import com.libin.request_business.SolidApplication;
+import com.libin.request_business.RxApplication;
 import com.libin.request_business.utils.NetworkUtil;
 import com.libin.request_business.utils.SLog;
 
@@ -44,7 +44,7 @@ public class OkHttpProvider {
         httpClientBuilder.writeTimeout(DEFAULT_WRITE_TIMEOUT, TimeUnit.SECONDS);
         httpClientBuilder.readTimeout(DEFAULT_READ_TIMEOUT, TimeUnit.SECONDS);
         //设置缓存
-        File httpCacheDirectory = new File(SolidApplication.getContext().getCacheDir(), "OkHttpCache");
+        File httpCacheDirectory = new File(RxApplication.getContext().getCacheDir(), "OkHttpCache");
         httpClientBuilder.cache(new Cache(httpCacheDirectory, 100 * 1024 * 1024));
         //设置拦截器
         httpClientBuilder.addInterceptor(new Interceptor() {
@@ -74,14 +74,14 @@ public class OkHttpProvider {
         @Override
         public Response intercept(Chain chain) throws IOException {
             Request request = chain.request();
-            if (!NetworkUtil.isConnected(SolidApplication.getContext())) {
+            if (!NetworkUtil.isConnected(RxApplication.getContext())) {
                 request = request.newBuilder()
                         .cacheControl(CacheControl.FORCE_CACHE)
                         .build();
             }
 
             Response response = chain.proceed(request);
-            if (NetworkUtil.isConnected(SolidApplication.getContext())) {
+            if (NetworkUtil.isConnected(RxApplication.getContext())) {
                 int maxAge = 60 * 60;
                 String cacheControl = request.cacheControl().toString();
                 if (TextUtils.isEmpty(cacheControl)) {

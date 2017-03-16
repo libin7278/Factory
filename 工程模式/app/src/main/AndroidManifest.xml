@@ -25,7 +25,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.HandlerActivity"></activity>
+        <activity android:name=".activity.HandlerActivity" />
+        <activity android:name=".mvp.login.LoginActivity" />
+        <activity android:name=".activity.GreenDaoAvtivity"></activity>
     </application>
 
 </manifest>

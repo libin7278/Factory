@@ -11,7 +11,7 @@ import com.libin.factory.Entity.GanHuoDataBean;
 import com.libin.factory.Entity.GanHuoTitleBean;
 import com.libin.request_business.base.CommonService;
 import com.libin.request_business.base.RxUtils;
-import com.libin.request_business.factory.ServiceFactory;
+import com.libin.request_business.factory.RxRequest;
 import com.libin.request_business.subscriber.HttpResult;
 
 import org.junit.Test;
@@ -50,7 +50,7 @@ public class ExampleInstrumentedTest {
 
     @Test
     public void loadData() throws Exception {
-        ServiceFactory.getInstance().createService(GankService.class)
+        RxRequest.getInstance().createService(GankService.class)
                 .getGanHuo("福利", 0)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -83,7 +83,7 @@ public class ExampleInstrumentedTest {
     @Test
     public void testDownLoad() throws Exception {
         String url = "https://codeload.github.com/burgessjp/GanHuoIO/zip/master";
-        CommonService downLoadService = ServiceFactory.getInstance().createService(CommonService.class);
+        CommonService downLoadService = RxRequest.getInstance().createService(CommonService.class);
         downLoadService.download(url).subscribe(new Observer<ResponseBody>() {
             @Override
             public void onSubscribe(Disposable d) {
@@ -115,7 +115,7 @@ public class ExampleInstrumentedTest {
     public void loadString() throws Exception {
         String url = "http://gank.io/api/data/Android/10/1";
 
-        CommonService downLoadService = ServiceFactory.getInstance().createService(CommonService.class);
+        CommonService downLoadService = RxRequest.getInstance().createService(CommonService.class);
         downLoadService.loadString(url).subscribe(new Observer<ResponseBody>() {
             @Override
             public void onSubscribe(Disposable d) {
@@ -147,7 +147,7 @@ public class ExampleInstrumentedTest {
     @Test
     public void testGetTitle2() throws Exception {
 
-        ServiceFactory.getInstance().createService(GankService.class)
+        RxRequest.getInstance().createService(GankService.class)
                 .getTitles().compose(RxUtils.<HttpResult<List<GanHuoTitleBean>>>defaultSchedulers()).subscribe(new Consumer<HttpResult<List<GanHuoTitleBean>>>() {
             @Override
             public void accept(@NonNull HttpResult<List<GanHuoTitleBean>> listHttpResult) throws Exception {
@@ -159,7 +159,7 @@ public class ExampleInstrumentedTest {
 
     @Test
     public void testGetTitle() throws Exception {
-        ServiceFactory.getInstance().
+        RxRequest.getInstance().
                 createService(GankService.class).getTitles()
                 .compose(RxUtils.<HttpResult<List<GanHuoTitleBean>>>defaultSchedulers())
                 .subscribe(new Observer<HttpResult<List<GanHuoTitleBean>>>() {
