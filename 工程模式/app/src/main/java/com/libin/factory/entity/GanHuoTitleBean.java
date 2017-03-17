@@ -1,4 +1,4 @@
-package com.libin.factory.Entity;
+package com.libin.factory.entity;
 
 import com.libin.request_business.subscriber.HttpResult;
 

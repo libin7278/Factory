@@ -3,8 +3,8 @@ package com.libin.factory.mvp.login;
 import android.os.Handler;
 import android.os.Message;
 
-import com.libin.factory.Api.GankService;
-import com.libin.factory.Entity.GanHuoTitleBean;
+import com.libin.factory.api.GankService;
+import com.libin.factory.entity.GanHuoTitleBean;
 import com.libin.factory.activity.MainActivity;
 import com.libin.factory.mvp.base.BasePresenterImpl;
 import com.libin.request_business.base.RxUtils;

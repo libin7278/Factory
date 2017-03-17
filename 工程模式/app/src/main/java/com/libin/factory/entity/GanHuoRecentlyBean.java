@@ -1,4 +1,4 @@
-package com.libin.factory.Entity;
+package com.libin.factory.entity;
 
 import java.util.List;
 

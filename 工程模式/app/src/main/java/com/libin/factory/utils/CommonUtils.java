@@ -1,4 +1,4 @@
-package com.libin.factory.Utils;
+package com.libin.factory.utils;
 
 import android.content.Context;
 import android.content.pm.PackageInfo;

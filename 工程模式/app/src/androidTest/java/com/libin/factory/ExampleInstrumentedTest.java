@@ -6,9 +6,9 @@ import android.support.test.filters.SmallTest;
 import android.support.test.runner.AndroidJUnit4;
 import android.util.Log;
 
-import com.libin.factory.Api.GankService;
-import com.libin.factory.Entity.GanHuoDataBean;
-import com.libin.factory.Entity.GanHuoTitleBean;
+import com.libin.factory.api.GankService;
+import com.libin.factory.entity.GanHuoDataBean;
+import com.libin.factory.entity.GanHuoTitleBean;
 import com.libin.request_business.base.CommonService;
 import com.libin.request_business.base.RxUtils;
 import com.libin.request_business.factory.RxRequest;

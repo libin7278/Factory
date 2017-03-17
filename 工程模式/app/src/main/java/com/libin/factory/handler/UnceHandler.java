@@ -10,8 +10,8 @@ import android.widget.Toast;
 
 import com.libin.factory.activity.MainActivity;
 import com.libin.factory.MainApplication;
-import com.libin.factory.Utils.CommonUtils;
-import com.libin.factory.Utils.PreferencesUtility;
+import com.libin.factory.utils.CommonUtils;
+import com.libin.factory.utils.PreferencesUtility;
 
 import java.io.File;
 import java.io.PrintWriter;

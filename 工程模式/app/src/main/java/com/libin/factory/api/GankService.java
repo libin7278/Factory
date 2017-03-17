@@ -1,9 +1,9 @@
-package com.libin.factory.Api;
+package com.libin.factory.api;
 
-import com.libin.factory.Entity.GanHuoDataBean;
-import com.libin.factory.Entity.GanHuoRecentlyBean;
-import com.libin.factory.Entity.GanHuoTitleBean;
-import com.libin.factory.Entity.SearchResult;
+import com.libin.factory.entity.GanHuoDataBean;
+import com.libin.factory.entity.GanHuoRecentlyBean;
+import com.libin.factory.entity.GanHuoTitleBean;
+import com.libin.factory.entity.SearchResult;
 import com.libin.request_business.subscriber.HttpResult;
 
 import java.util.List;
