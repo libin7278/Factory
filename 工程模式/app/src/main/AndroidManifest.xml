@@ -28,7 +28,6 @@
         <activity android:name=".activity.HandlerActivity" />
         <activity android:name=".mvp.login.LoginActivity" />
         <activity android:name=".activity.GreenDaoAvtivity"></activity>
-        <activity android:name="com.libin.factory.ndk.NDK"></activity>
     </application>
 
 </manifest>

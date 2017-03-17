@@ -11,9 +11,11 @@ import android.widget.Button;
 import com.libin.factory.R;
 import com.libin.factory.handler.HandlerUtil;
 import com.libin.factory.mvp.login.LoginActivity;
+import com.libin.factory.ndk.NDK;
 import com.libin.factory.reflex_factory.JILiDiHao;
 import com.libin.factory.reflex_factory.JiLIBoYue;
 import com.libin.factory.reflex_factory.JiliCarFactory;
+import com.orhanobut.logger.Logger;
 
 public class MainActivity extends AppCompatActivity {
     private Button btn_rx_rt;
@@ -35,6 +37,10 @@ public class MainActivity extends AppCompatActivity {
         handlerTest();
 
         factoryTest();
+
+        Logger.e(NDK.getString_From_c());
+
+        Logger.e(NDK.getStringFromNative());
 
     }
 

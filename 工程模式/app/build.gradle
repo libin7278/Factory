@@ -11,6 +11,9 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        ndk {
+            moduleName "MyJni"          //生成的so名字
+        }
     }
     buildTypes {
         release {
@@ -30,6 +33,7 @@ android {
     }
 
 
+    sourceSets { main { jni.srcDirs = ['src/main/jni', 'src/main/jni/2'] } }
 }
 
 

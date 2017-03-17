@@ -1,31 +1,18 @@
 package com.libin.factory.ndk;
 
-import android.app.Activity;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Toast;
-
-import com.libin.factory.R;
-
 /**
  * Created by doudou on 2017/3/17.
  */
 
-public class NDK extends Activity {
+public class NDK  {
+    // 1.加载实现了native函数的动态库，只需要写动态库的名字
     static {
-        System.loadLibrary("MyJni"); //倒入生成的链接库文件
+        System.loadLibrary("MyJni");
     }
 
-    public native String getStringFromNative();//本地方法
-    public native String getString_From_c();
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ndk);
-    }
+    // 2.声明这是一个native函数，由本地代码实现
+    public static native String getStringFromNative();
+    public static native String getString_From_c();
+    public static native int getint();
 
-    public void onClick(View view) {
-        System.out.println(getString_From_c());
-        Toast.makeText(this, getStringFromNative(), Toast.LENGTH_LONG).show();
-    }
 }
