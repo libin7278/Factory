@@ -1,4 +1,4 @@
-package com.libin.core;
+package com.libin.core.utils;
 
 import android.content.Context;
 import android.content.res.Resources;

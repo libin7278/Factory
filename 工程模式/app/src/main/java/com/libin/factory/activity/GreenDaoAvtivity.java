@@ -1,10 +1,10 @@
 package com.libin.factory.activity;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import com.libin.core.base.BaseActivity;
 import com.libin.factory.R;
 import com.libin.factory.green_dao.bean.ShopBean;
 import com.libin.factory.green_dao.dao.LoveDao;
@@ -13,7 +13,7 @@ import com.orhanobut.logger.Logger;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GreenDaoAvtivity extends AppCompatActivity {
+public class GreenDaoAvtivity extends BaseActivity {
     private Button btn_add;
     private Button btn_delete;
     private Button btn_update;

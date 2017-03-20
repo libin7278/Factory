@@ -4,26 +4,27 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import com.libin.core.base.BaseActivity;
 import com.libin.factory.R;
+import com.libin.factory.entity.Userj;
 import com.libin.factory.handler.HandlerUtil;
 import com.libin.factory.mvp.login.LoginActivity;
-import com.libin.factory.ndk.NDK;
 import com.libin.factory.reflex_factory.JILiDiHao;
 import com.libin.factory.reflex_factory.JiLIBoYue;
 import com.libin.factory.reflex_factory.JiliCarFactory;
-import com.orhanobut.logger.Logger;
 
-public class MainActivity extends AppCompatActivity {
+
+public class MainActivity extends BaseActivity {
     private Button btn_rx_rt;
     private Button btn_mvp;
     private Button btn_greendao;
 
     private Handler mHandler;
-    String TAG = MainActivity.class.getSimpleName();
+
+    private static final String TAG = MainActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,9 +39,14 @@ public class MainActivity extends AppCompatActivity {
 
         factoryTest();
 
-        Logger.e(NDK.getString_From_c());
+        Userj userj = new Userj();
+        userj.setAge(10);
+        userj.setName("xiaoming");
+        userj.setSex("man");
 
-        Logger.e(NDK.getStringFromNative());
+//        Logger.e(NDK.getString_From_c());
+//        Logger.e(NDK.getStringFromNative());
+//        Logger.e(NDK.getint()+"。。");
 
     }
 

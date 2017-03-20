@@ -5,32 +5,30 @@
 #ifndef _Included_com_libin_factory_ndk_NDK
 #define _Included_com_libin_factory_ndk_NDK
 
+
 #ifdef __cplusplus
 extern "C" {
 #endif
-/*
- * Class:     com_libin_factory_ndk_NDK
- * Method:    getStringFromNative
- * Signature: ()Ljava/lang/String;
- */
+
 JNIEXPORT jstring JNICALL Java_com_libin_factory_ndk_NDK_getStringFromNative
   (JNIEnv *, jclass);
 
-/*
- * Class:     com_libin_factory_ndk_NDK
- * Method:    getString_From_c
- * Signature: ()Ljava/lang/String;
- */
 JNIEXPORT jstring JNICALL Java_com_libin_factory_ndk_NDK_getString_1From_1c
   (JNIEnv *, jclass);
 
-/*
- * Class:     com_libin_factory_ndk_NDK
- * Method:    getint
- * Signature: ()Ljava/lang/int;
- */
-JNIEXPORT jint JNICALL
-Java_com_libin_factory_ndk_NDK_getint(JNIEnv *env, jclass type);
+JNIEXPORT jint JNICALL Java_com_libin_factory_ndk_NDK_getint
+        (JNIEnv *env, jclass type);
+
+JNIEXPORT jstring JNICALL Java_com_libin_factory_ndk_NDK_printStr
+        (JNIEnv *env, jclass type);
+
+JNIEXPORT jint JNICALL Java_com_libin_factory_ndk_NDK_addInt
+        (JNIEnv *env, jclass type, jint a, jint b);
+
+JNIEXPORT jstring JNICALL
+Java_com_libin_factory_ndk_NDK_printUser
+        (JNIEnv *env, jclass type, jobject user);
+
 
 #ifdef __cplusplus
 }
