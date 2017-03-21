@@ -26,9 +26,17 @@ JNIEXPORT jint JNICALL Java_com_libin_factory_ndk_NDK_addInt
         (JNIEnv *env, jclass type, jint a, jint b);
 
 JNIEXPORT jstring JNICALL
-Java_com_libin_factory_ndk_NDK_printUser
-        (JNIEnv *env, jclass type, jobject user);
+Java_com_libin_factory_ndk_NDK_addString
+        (JNIEnv *env, jclass type, jstring s_);
 
+JNIEXPORT jobject JNICALL
+Java_com_libin_factory_ndk_NDK_getStudentInfo(JNIEnv *env, jclass type);
+
+JNIEXPORT jobject JNICALL
+Java_com_libin_factory_ndk_NDK_updateStudentInfo(JNIEnv *env, jclass type, jobject student);
+
+JNIEXPORT jobject JNICALL
+        Java_com_libin_factory_ndk_NDK_getPeopleInfo();
 
 #ifdef __cplusplus
 }

@@ -27,7 +27,8 @@
         </activity>
         <activity android:name=".activity.HandlerActivity" />
         <activity android:name=".mvp.login.LoginActivity" />
-        <activity android:name=".activity.GreenDaoAvtivity"></activity>
+        <activity android:name=".activity.GreenDaoAvtivity" />
+        <activity android:name=".activity.JNIActivity"></activity>
     </application>
 
 </manifest>

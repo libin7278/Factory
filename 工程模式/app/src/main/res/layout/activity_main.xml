@@ -44,4 +44,14 @@
         android:layout_height="50dp"
         android:layout_alignTop="@+id/btn_greendao"
         android:layout_toStartOf="@+id/btn_mvp" />
+
+    <Button
+        android:id="@+id/but_jni"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/btn_greendao"
+        android:layout_alignStart="@+id/btn_mvp"
+        android:text="JNI" />
+
+
 </RelativeLayout>

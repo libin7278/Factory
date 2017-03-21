@@ -4,17 +4,24 @@
 
 #include "com_libin_factory_ndk_NDK.h"
 #include "jni.h"
+#include "jniutils/util.h"
+#include <string.h>
 
 // 引入log头文件
 #include <android/log.h>
 // log标签
 #define TAG "jnitest"
 // 定义info信息
-#define LOGI(...) __android_log_print(ANDROID_LOG_INFO,TAG,VA_ARGS)
+#define LOGI(...) __android_log_print(ANDROID_LOG_INFO, TAG, __VA_ARGS__)
 // 定义debug信息
-#define LOGI(...) __android_log_print(ANDROID_LOG_DEBUG, TAG, VA_ARGS)
+#define LOGD(...) __android_log_print(ANDROID_LOG_DEBUG, TAG, __VA_ARGS__)
 // 定义error信息
-#define LOGI(...) __android_log_print(ANDROID_LOG_ERROR,TAG,VA_ARGS)
+#define LOGE(...) __android_log_print(ANDROID_LOG_ERROR,TAG,__VA_ARGS__)
+// 定义WARN类型
+#define LOGW(...) __android_log_print(ANDROID_LOG_WARN,TAG ,__VA_ARGS__)
+// 定义FATAL类型
+#define LOGF(...) __android_log_print(ANDROID_LOG_FATAL,TAG ,__VA_ARGS__)
+
 
 
 JNIEXPORT jstring JNICALL Java_com_libin_factory_ndk_NDK_getStringFromNative(JNIEnv *env, jclass) {
@@ -32,23 +39,106 @@ JNIEXPORT jint JNICALL Java_com_libin_factory_ndk_NDK_getint(JNIEnv *env, jclass
 }
 
 JNIEXPORT jstring JNICALL Java_com_libin_factory_ndk_NDK_printStr
-        (JNIEnv *env, jclass type){
+        (JNIEnv *env, jclass type) {
 
+    LOGD("通过JNI简单输出字符串");
+    LOGI("通过JNI简单输出字符串");
+    LOGF("通过JNI简单输出字符串");
+    LOGW("通过JNI简单输出字符串");
+    LOGE("通过JNI简单输出字符串");
     return env->NewStringUTF("通过JNI简单输出字符串");
 
 }
 
+/**
+* 整形加法操作
+* @param a
+* @param b
+* @return
+*/
 JNIEXPORT jint JNICALL Java_com_libin_factory_ndk_NDK_addInt
-        (JNIEnv *env, jclass type, jint a, jint b){
+        (JNIEnv *env, jclass type, jint a, jint b) {
 
-    return a+b;
+    return a + b;
 }
 
-JNIEXPORT jstring JNICALL
-Java_com_libin_factory_ndk_NDK_printUser
-        (JNIEnv *env, jclass type, jobject user){
 
-    //LOGI("add from jni–打印用户信息–");
+/**
+ * 通过JNI简单进行字符串拼接操作
+ * @param s
+ * @return
+ */
+JNIEXPORT jstring JNICALL Java_com_libin_factory_ndk_NDK_addString
+        (JNIEnv *env, jclass type, jstring s_) {
+
+    char* text = jstringToChar(env,s_);
+
+    char temp[20] = "    /  I am from c";
+
+    strcat(text,temp);
+
+    return charToString(env,text);
 
 }
 
+/**
+ * 创建Student信息
+ */
+JNIEXPORT jobject JNICALL
+Java_com_libin_factory_ndk_NDK_getStudentInfo(JNIEnv *env, jclass type) {
+    //com.libin.factory.ndk.Student 要把 . 替换成 ／
+    //关于包描述符，这儿是 com/libin/factory/ndk/Student 要用全类名
+    jclass stucls = env->FindClass("com/libin/factory/ndk/Student"); //或得Student类引用
+
+    //获得该类型的构造函数  函数名为 <init> 返回类型必须为 void 即 V
+    jmethodID constrocMID = env->GetMethodID(stucls, "<init>", "(Ljava/lang/String;I)V");
+
+    jstring str = env->NewStringUTF("Student named Aly");
+
+    jobject stu_ojb = env->NewObject(stucls, constrocMID, str, 25);  //构造一个对象，调用该类的构造函数，并且传递参数
+
+    return stu_ojb;
+
+}
+
+/**
+ * 跟新Student信息
+ */
+JNIEXPORT jobject JNICALL
+Java_com_libin_factory_ndk_NDK_updateStudentInfo
+        (JNIEnv *env, jclass type, jobject obj) {
+
+    jclass clazz;
+    jfieldID fid;
+    jstring j_str;
+    jstring j_newStr;
+
+    clazz = env->GetObjectClass(obj);
+    if (clazz == NULL) {
+        return NULL;
+    }
+    fid = env->GetFieldID(clazz, "name", "Ljava/lang/String;");
+    if (clazz == NULL) {
+        return NULL;
+    }
+    j_str = (jstring) (env)->GetObjectField(obj, fid);
+    j_newStr = (env)->NewStringUTF("This is New Name hahah");
+    (env)->SetObjectField(obj, fid, j_newStr);
+    // 删除局部引用
+    (env)->DeleteLocalRef(clazz);
+    (env)->DeleteLocalRef(j_str);
+    (env)->DeleteLocalRef(j_newStr);
+    return obj;
+
+}
+
+/**
+ * 从Java传递复杂对象集合List<Student>到Native,解析后赋值到另一个复杂对象集合List<People>并返回
+ */
+JNIEXPORT jobject JNICALL
+Java_com_libin_factory_ndk_NDK_getPeopleInfo
+        (JNIEnv *env, jclass type, jobject students) {
+
+    // TODO
+
+}

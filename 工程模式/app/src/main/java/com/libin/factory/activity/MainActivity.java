@@ -9,7 +9,6 @@ import android.widget.Button;
 
 import com.libin.core.base.BaseActivity;
 import com.libin.factory.R;
-import com.libin.factory.entity.Userj;
 import com.libin.factory.handler.HandlerUtil;
 import com.libin.factory.mvp.login.LoginActivity;
 import com.libin.factory.reflex_factory.JILiDiHao;
@@ -21,6 +20,7 @@ public class MainActivity extends BaseActivity {
     private Button btn_rx_rt;
     private Button btn_mvp;
     private Button btn_greendao;
+    private Button but_jni;
 
     private Handler mHandler;
 
@@ -39,15 +39,6 @@ public class MainActivity extends BaseActivity {
 
         factoryTest();
 
-        Userj userj = new Userj();
-        userj.setAge(10);
-        userj.setName("xiaoming");
-        userj.setSex("man");
-
-//        Logger.e(NDK.getString_From_c());
-//        Logger.e(NDK.getStringFromNative());
-//        Logger.e(NDK.getint()+"。。");
-
     }
 
     private void onClickListener() {
@@ -55,6 +46,13 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
 
+            }
+        });
+
+        but_jni.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, JNIActivity.class));
             }
         });
 
@@ -78,6 +76,7 @@ public class MainActivity extends BaseActivity {
         btn_rx_rt = (Button) findViewById(R.id.btn_rx_rt);
         btn_mvp =(Button) findViewById(R.id.btn_mvp);
         btn_greendao =(Button) findViewById(R.id.btn_greendao);
+        but_jni =(Button) findViewById(R.id.but_jni);
     }
 
     private void factoryTest() {

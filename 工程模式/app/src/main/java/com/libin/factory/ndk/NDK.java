@@ -1,6 +1,6 @@
 package com.libin.factory.ndk;
 
-import com.libin.factory.entity.Userj;
+import java.util.ArrayList;
 
 /**
  * Created by doudou on 2017/3/17.
@@ -34,28 +34,30 @@ public class NDK  {
     static public native int addInt(int a, int b);
 
     /**
-     * 通过JNI输入JAVA对象信息
-     * @param user
+     * 通过JNI简单进行字符串拼接操作
+     * @param s
      * @return
      */
-    static public native String printUser(Userj user);
+    static public native String addString(String s);
 
     /**
-     * 通过JNI创建java对象
-     * @param name
-     * @param age
-     * @param sex
+     * 创建Student信息
      * @return
      */
-    static public native Userj newUser(String name, int age, String sex);
+    public static native Student getStudentInfo();
 
     /**
-     * 通过JNI调用无参构造函数创建java对象并且设置相应属性值
-     * @param name
-     * @param age
-     * @param sex
+     * 更新Student信息
+     * @param student
      * @return
      */
-    static public native Userj newUserNoArgs(String name, int age, String sex);
+    public static native Student updateStudentInfo(Student student);
+
+    /**
+     *从Java传递复杂对象集合List<Student>到Native,解析后赋值到另一个复杂对象集合List<People>并返回
+     * @param students
+     * @return
+     */
+    public static native ArrayList<People> getPeopleInfo(ArrayList<Student> students);
 
 }
