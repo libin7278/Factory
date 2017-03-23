@@ -9,6 +9,7 @@ import android.widget.Button;
 
 import com.libin.core.base.BaseActivity;
 import com.libin.factory.R;
+import com.libin.factory.activity.custom_view.CustomViewActivity;
 import com.libin.factory.handler.HandlerUtil;
 import com.libin.factory.mvp.login.LoginActivity;
 import com.libin.factory.reflex_factory.JILiDiHao;
@@ -21,6 +22,7 @@ public class MainActivity extends BaseActivity {
     private Button btn_mvp;
     private Button btn_greendao;
     private Button but_jni;
+    private Button btn_weathwer;
 
     private Handler mHandler;
 
@@ -70,6 +72,13 @@ public class MainActivity extends BaseActivity {
                 startActivity(new Intent(MainActivity.this, GreenDaoAvtivity.class));
             }
         });
+
+        btn_weathwer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, CustomViewActivity.class));
+            }
+        });
     }
 
     private void findview() {
@@ -77,6 +86,7 @@ public class MainActivity extends BaseActivity {
         btn_mvp =(Button) findViewById(R.id.btn_mvp);
         btn_greendao =(Button) findViewById(R.id.btn_greendao);
         but_jni =(Button) findViewById(R.id.but_jni);
+        btn_weathwer =(Button) findViewById(R.id.btn_weathwer);
     }
 
     private void factoryTest() {

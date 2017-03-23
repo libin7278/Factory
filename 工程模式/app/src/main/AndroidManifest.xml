@@ -28,7 +28,10 @@
         <activity android:name=".activity.HandlerActivity" />
         <activity android:name=".mvp.login.LoginActivity" />
         <activity android:name=".activity.GreenDaoAvtivity" />
-        <activity android:name=".activity.JNIActivity"></activity>
+        <activity android:name=".activity.JNIActivity" />
+        <activity android:name=".activity.custom_view.CustomViewActivity" />
+        <activity android:name=".activity.custom_view.CustomViewSActivity" />
+        <activity android:name=".activity.custom_view.CustomViewHWWActivity"></activity>
     </application>
 
 </manifest>
