@@ -23,7 +23,6 @@
 #define LOGF(...) __android_log_print(ANDROID_LOG_FATAL,TAG ,__VA_ARGS__)
 
 
-
 JNIEXPORT jstring JNICALL Java_com_libin_factory_ndk_NDK_getStringFromNative(JNIEnv *env, jclass) {
     return (*env).NewStringUTF("ndk");
 }
@@ -71,13 +70,24 @@ JNIEXPORT jint JNICALL Java_com_libin_factory_ndk_NDK_addInt
 JNIEXPORT jstring JNICALL Java_com_libin_factory_ndk_NDK_addString
         (JNIEnv *env, jclass type, jstring s_) {
 
-    char* text = jstringToChar(env,s_);
+    char *text = jstringToChar(env, s_);
 
     char temp[20] = "    /  I am from c";
 
-    strcat(text,temp);
+    strcat(text, temp);
 
-    return charToString(env,text);
+    return charToString(env, text);
+
+}
+
+
+/**
+ * C代码调NDK类中的addInt(int a, int b)方法
+ */
+JNIEXPORT void JNICALL
+Java_com_libin_factory_ndk_NDK_ccallBackAddInt(JNIEnv *env, jclass type) {
+
+    // TODO
 
 }
 
@@ -130,6 +140,48 @@ Java_com_libin_factory_ndk_NDK_updateStudentInfo
     (env)->DeleteLocalRef(j_newStr);
     return obj;
 
+}
+
+/**
+* 让C代码给你每个元素加上10
+* @param intArray
+* @return
+*/
+JNIEXPORT jintArray JNICALL
+Java_com_libin_factory_ndk_NDK_increaseArrayEles(JNIEnv *env, jclass type, jintArray intArray_) {
+    //得到数组的长度
+    jsize size = env->GetArrayLength(intArray_);
+    //得到数组元素
+    jint *array = env->GetIntArrayElements(intArray_, JNI_FALSE); //JNI_FALSE同一份 不开辟新空间
+    //遍历数组给每个元素加上10
+    for (int i = 0; i < size; i++) {
+        *(array + i) += 10;
+        LOGE("array %d = %d", i, *(array + i));
+
+    }
+    env->ReleaseIntArrayElements(intArray_, array, 0);
+    //返回结果
+    return intArray_;
+
+}
+
+/**
+* 应用：检车密码是否正确，正确返回200，错误返回400
+* @param pwd
+* @return
+*/
+JNIEXPORT jint JNICALL
+Java_com_libin_factory_ndk_NDK_checkPwd(JNIEnv *env, jclass type, jstring pwd_) {
+    //假设服务器密码123456
+    char *otigin = "123456";
+    char *fromUser = jstringToChar(env, pwd_);
+    //函数比较字符串是否相同
+    int code = strcmp(otigin, fromUser);
+    if (code == 0) {
+        return 200;
+    } else {
+        return 400;
+    }
 }
 
 /**

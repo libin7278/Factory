@@ -16,5 +16,22 @@
         android:layout_height="wrap_content"
         android:text="防滑华天气" />
 
+    <Button
+        android:id="@+id/btn_qq_weather"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="仿QQ天气" />
+
+    <Button
+        android:id="@+id/btn_paint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="paint" />
+
+    <Button
+        android:id="@+id/btn_path"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="path" />
 
 </LinearLayout>

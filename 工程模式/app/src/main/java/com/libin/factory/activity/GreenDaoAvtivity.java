@@ -67,8 +67,6 @@ public class GreenDaoAvtivity extends BaseActivity {
                 queryDate();
             }
         });
-
-
     }
 
 

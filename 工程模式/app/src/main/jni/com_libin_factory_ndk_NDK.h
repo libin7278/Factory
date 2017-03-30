@@ -4,39 +4,100 @@
 
 #ifndef _Included_com_libin_factory_ndk_NDK
 #define _Included_com_libin_factory_ndk_NDK
-
-
 #ifdef __cplusplus
 extern "C" {
 #endif
-
+/*
+ * Class:     com_libin_factory_ndk_NDK
+ * Method:    getStringFromNative
+ * Signature: ()Ljava/lang/String;
+ */
 JNIEXPORT jstring JNICALL Java_com_libin_factory_ndk_NDK_getStringFromNative
   (JNIEnv *, jclass);
 
+/*
+ * Class:     com_libin_factory_ndk_NDK
+ * Method:    getString_From_c
+ * Signature: ()Ljava/lang/String;
+ */
 JNIEXPORT jstring JNICALL Java_com_libin_factory_ndk_NDK_getString_1From_1c
   (JNIEnv *, jclass);
 
+/*
+ * Class:     com_libin_factory_ndk_NDK
+ * Method:    getint
+ * Signature: ()I
+ */
 JNIEXPORT jint JNICALL Java_com_libin_factory_ndk_NDK_getint
-        (JNIEnv *env, jclass type);
+  (JNIEnv *, jclass);
 
+/*
+ * Class:     com_libin_factory_ndk_NDK
+ * Method:    printStr
+ * Signature: ()Ljava/lang/String;
+ */
 JNIEXPORT jstring JNICALL Java_com_libin_factory_ndk_NDK_printStr
-        (JNIEnv *env, jclass type);
+  (JNIEnv *, jclass);
 
+/*
+ * Class:     com_libin_factory_ndk_NDK
+ * Method:    addInt
+ * Signature: (II)I
+ */
 JNIEXPORT jint JNICALL Java_com_libin_factory_ndk_NDK_addInt
-        (JNIEnv *env, jclass type, jint a, jint b);
+  (JNIEnv *, jclass, jint, jint);
 
-JNIEXPORT jstring JNICALL
-Java_com_libin_factory_ndk_NDK_addString
-        (JNIEnv *env, jclass type, jstring s_);
+/*
+ * Class:     com_libin_factory_ndk_NDK
+ * Method:    addString
+ * Signature: (Ljava/lang/String;)Ljava/lang/String;
+ */
+JNIEXPORT jstring JNICALL Java_com_libin_factory_ndk_NDK_addString
+  (JNIEnv *, jclass, jstring);
 
-JNIEXPORT jobject JNICALL
-Java_com_libin_factory_ndk_NDK_getStudentInfo(JNIEnv *env, jclass type);
+/*
+ * Class:     com_libin_factory_ndk_NDK
+ * Method:    increaseArrayEles
+ * Signature: ([I)[I
+ */
+JNIEXPORT jintArray JNICALL Java_com_libin_factory_ndk_NDK_increaseArrayEles
+  (JNIEnv *, jclass, jintArray);
 
-JNIEXPORT jobject JNICALL
-Java_com_libin_factory_ndk_NDK_updateStudentInfo(JNIEnv *env, jclass type, jobject student);
+/*
+ * Class:     com_libin_factory_ndk_NDK
+ * Method:    checkPwd
+ * Signature: (Ljava/lang/String;)I
+ */
+JNIEXPORT jint JNICALL Java_com_libin_factory_ndk_NDK_checkPwd
+  (JNIEnv *, jclass, jstring);
 
-JNIEXPORT jobject JNICALL
-        Java_com_libin_factory_ndk_NDK_getPeopleInfo();
+/*
+ * Class:     com_libin_factory_ndk_NDK
+ * Method:    getStudentInfo
+ * Signature: ()Lcom/libin/factory/ndk/Student;
+ */
+JNIEXPORT jobject JNICALL Java_com_libin_factory_ndk_NDK_getStudentInfo
+  (JNIEnv *, jclass);
+
+/*
+ * Class:     com_libin_factory_ndk_NDK
+ * Method:    updateStudentInfo
+ * Signature: (Lcom/libin/factory/ndk/Student;)Lcom/libin/factory/ndk/Student;
+ */
+JNIEXPORT jobject JNICALL Java_com_libin_factory_ndk_NDK_updateStudentInfo
+  (JNIEnv *, jclass, jobject);
+
+/*
+ * Class:     com_libin_factory_ndk_NDK
+ * Method:    getPeopleInfo
+ * Signature: (Ljava/util/ArrayList;)Ljava/util/ArrayList;
+ */
+JNIEXPORT jobject JNICALL Java_com_libin_factory_ndk_NDK_getPeopleInfo
+  (JNIEnv *, jclass, jobject);
+
+JNIEXPORT void JNICALL
+Java_com_libin_factory_ndk_NDK_ccallBackAddInt
+   (JNIEnv *env, jclass type);
 
 #ifdef __cplusplus
 }

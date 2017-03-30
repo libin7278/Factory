@@ -31,14 +31,35 @@ public class NDK  {
      * @param b
      * @return
      */
-    static public native int addInt(int a, int b);
+    public static native int addInt(int a, int b);
 
     /**
      * 通过JNI简单进行字符串拼接操作
      * @param s
      * @return
      */
-    static public native String addString(String s);
+    public static native String addString(String s);
+
+    /**
+     * 让C代码给你每个元素加上10
+     * @param intArray
+     * @return
+     */
+    public static native int[] increaseArrayEles(int[] intArray);
+
+    /**
+     * 应用：检车密码是否正确，正确返回200，错误返回400
+     * @param pwd
+     * @return
+     */
+    public static native int checkPwd(String pwd);
+    
+    //=======================================>C调java
+
+    /**
+     * C代码调addInt(int a, int b)方法
+     */
+    public static native void ccallBackAddInt();
 
     /**
      * 创建Student信息

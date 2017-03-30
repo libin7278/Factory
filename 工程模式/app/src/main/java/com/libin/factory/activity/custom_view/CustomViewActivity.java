@@ -10,7 +10,10 @@ import com.libin.factory.R;
 
 public class CustomViewActivity extends AppCompatActivity {
     private Button btn_civ;
+    private Button btn_qq_weather;
     private Button btn_hew;
+    private Button btn_path;
+    private Button btn_paint;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +29,9 @@ public class CustomViewActivity extends AppCompatActivity {
     private void findView() {
         btn_civ = (Button) findViewById(R.id.btn_civ);
         btn_hew = (Button) findViewById(R.id.btn_hew);
+        btn_qq_weather = (Button) findViewById(R.id.btn_qq_weather);
+        btn_paint = (Button) findViewById(R.id.btn_paint);
+        btn_path = (Button) findViewById(R.id.btn_path);
     }
 
     private void onClick() {
@@ -40,6 +46,27 @@ public class CustomViewActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(CustomViewActivity.this,CustomViewHWWActivity.class));
+            }
+        });
+
+        btn_qq_weather.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(CustomViewActivity.this,CustomQQWActivity.class));
+            }
+        });
+
+        btn_path.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(CustomViewActivity.this,PathActivity.class));
+            }
+        });
+
+        btn_paint.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(CustomViewActivity.this,PaintActivity.class));
             }
         });
     }

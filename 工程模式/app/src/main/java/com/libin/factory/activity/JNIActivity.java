@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import com.libin.factory.R;
 import com.libin.factory.ndk.NDK;
+import com.orhanobut.logger.Logger;
 
 public class JNIActivity extends AppCompatActivity {
     private Button btn_c_add;
@@ -15,6 +16,8 @@ public class JNIActivity extends AppCompatActivity {
     private Button btn_stu_info;
     private Button btn_update_std;
     private Button btn_p_s;
+    private Button btn_c_secret;
+    private Button btn_c_array;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +36,8 @@ public class JNIActivity extends AppCompatActivity {
         btn_stu_info = (Button) findViewById(R.id.btn_stu_info);
         btn_p_s = (Button) findViewById(R.id.btn_p_s);
         btn_update_std = (Button) findViewById(R.id.btn_update_std);
+        btn_c_secret = (Button) findViewById(R.id.btn_c_secret);
+        btn_c_array = (Button) findViewById(R.id.btn_c_array);
 
     }
 
@@ -69,6 +74,24 @@ public class JNIActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(JNIActivity.this, "Student信息 ：" + NDK.updateStudentInfo(NDK.getStudentInfo()), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        btn_c_secret.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(JNIActivity.this,"密码校验"+ NDK.checkPwd("123456"), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        btn_c_array.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int a[] = {1,2,3,4,5,6,7};
+                int[] ints = NDK.increaseArrayEles(a);
+                for (int i = 0 ; i< ints.length;i++){
+                    Logger.e(a[i]+"");
+                }
             }
         });
 
