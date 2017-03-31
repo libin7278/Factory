@@ -18,6 +18,10 @@ public class JNIActivity extends AppCompatActivity {
     private Button btn_p_s;
     private Button btn_c_secret;
     private Button btn_c_array;
+    private Button btn_c_java_addint;
+    private Button btn_c_java_getString;
+    private Button button4;
+    private Button button5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +42,10 @@ public class JNIActivity extends AppCompatActivity {
         btn_update_std = (Button) findViewById(R.id.btn_update_std);
         btn_c_secret = (Button) findViewById(R.id.btn_c_secret);
         btn_c_array = (Button) findViewById(R.id.btn_c_array);
+        btn_c_java_addint = (Button) findViewById(R.id.btn_c_java_addint);
+        btn_c_java_getString = (Button) findViewById(R.id.btn_c_java_getString);
+        button4 = (Button) findViewById(R.id.button4);
+        button5 = (Button) findViewById(R.id.button5);
 
     }
 
@@ -80,18 +88,46 @@ public class JNIActivity extends AppCompatActivity {
         btn_c_secret.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(JNIActivity.this,"密码校验"+ NDK.checkPwd("123456"), Toast.LENGTH_SHORT).show();
+                Toast.makeText(JNIActivity.this, "密码校验" + NDK.checkPwd("123456"), Toast.LENGTH_SHORT).show();
             }
         });
 
         btn_c_array.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int a[] = {1,2,3,4,5,6,7};
+                int a[] = {1, 2, 3, 4, 5, 6, 7};
                 int[] ints = NDK.increaseArrayEles(a);
-                for (int i = 0 ; i< ints.length;i++){
-                    Logger.e(a[i]+"");
+                for (int i = 0; i < ints.length; i++) {
+                    Logger.e(a[i] + "");
                 }
+            }
+        });
+
+        btn_c_java_addint.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NDK.ccallBackAddInt();
+            }
+        });
+
+        btn_c_java_getString.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NDK.ccallBackGetString();
+            }
+        });
+
+        button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NDK.ccallBackAddIntS();
+            }
+        });
+
+        button5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NDK.ccallBackGetStringS();
             }
         });
 

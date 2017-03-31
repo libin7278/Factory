@@ -99,6 +99,19 @@ JNIEXPORT void JNICALL
 Java_com_libin_factory_ndk_NDK_ccallBackAddInt
    (JNIEnv *env, jclass type);
 
+JNIEXPORT void JNICALL
+Java_com_libin_factory_ndk_NDK_ccallBackGetString
+        (JNIEnv *env, jclass type);
+
+JNIEXPORT void JNICALL
+Java_com_libin_factory_ndk_NDK_ccallBackAddIntS
+        (JNIEnv *env, jclass type) ;
+
+JNIEXPORT void JNICALL
+Java_com_libin_factory_ndk_NDK_ccallBackGetStringS
+        (JNIEnv *env, jclass type);
+
+
 #ifdef __cplusplus
 }
 #endif

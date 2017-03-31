@@ -86,9 +86,60 @@ JNIEXPORT jstring JNICALL Java_com_libin_factory_ndk_NDK_addString
  */
 JNIEXPORT void JNICALL
 Java_com_libin_factory_ndk_NDK_ccallBackAddInt(JNIEnv *env, jclass type) {
+    //得到字节码
+    jclass jclazz = env->FindClass("com/libin/factory/ndk/Test"); //com.libin.factory.ndk.TestK 点换成下滑线
+    //得到方法
+    jmethodID jmethodIDS = env->GetMethodID(jclazz,"addInt","(II)I");
+    //实例化该类
+    jobject jobj = env->AllocObject(jclazz);
+    //调用方法
+    jint value =env->CallIntMethod(jobj,jmethodIDS,99,1);
 
-    // TODO
+    LOGE("value = %d\n" ,value);
+}
 
+/**
+* C代码调NDK类中的setStrign(String s)方法
+*/
+JNIEXPORT void JNICALL
+Java_com_libin_factory_ndk_NDK_ccallBackGetString(JNIEnv *env, jclass type) {
+    //得到字节码
+    jclass jclazz = env->FindClass("com/libin/factory/ndk/Test"); //com.libin.factory.ndk.TestK 点换成下滑线
+    //得到方法
+    jmethodID jmethodIDS = env->GetMethodID(jclazz,"setStrings","(Ljava/lang/String;)V");
+    //实例化该类
+    jobject jobj = env->AllocObject(jclazz);
+    //调用方法
+    jstring str = env->NewStringUTF("hello 我是C,我在调用java方法");
+
+    env->CallVoidMethod(jobj,jmethodIDS,str);
+
+}
+
+JNIEXPORT void JNICALL
+Java_com_libin_factory_ndk_NDK_ccallBackAddIntS(JNIEnv *env, jclass type) {
+    //得到字节码
+    jclass jclazz = env->FindClass("com/libin/factory/ndk/Test"); //com.libin.factory.ndk.TestK 点换成下滑线
+    //得到方法
+    jmethodID jmethodIDS = env->GetStaticMethodID(jclazz,"addIntS","(II)I");
+//    //实例化该类
+//    jobject jobj = env->AllocObject(jclazz);
+    //调用方法
+    jint value =env->CallStaticIntMethod(jclazz,jmethodIDS,99,1);
+    LOGE("value = %d\n" ,value);
+}
+
+JNIEXPORT void JNICALL
+Java_com_libin_factory_ndk_NDK_ccallBackGetStringS(JNIEnv *env, jclass type) {
+    //得到字节码
+    jclass jclazz = env->FindClass("com/libin/factory/ndk/Test"); //com.libin.factory.ndk.TestK 点换成下滑线
+    //得到方法
+    jmethodID jmethodIDS = env->GetStaticMethodID(jclazz,"setStringsS","(Ljava/lang/String;)V");
+//    //实例化该类
+//    jobject jobj = env->AllocObject(jclazz);
+    //调用方法
+    jstring str = env->NewStringUTF("hello 我是C,我在调用java的静态方法方法");
+    env->CallStaticVoidMethod(jclazz,jmethodIDS,str);
 }
 
 /**
@@ -173,8 +224,8 @@ Java_com_libin_factory_ndk_NDK_increaseArrayEles(JNIEnv *env, jclass type, jintA
 JNIEXPORT jint JNICALL
 Java_com_libin_factory_ndk_NDK_checkPwd(JNIEnv *env, jclass type, jstring pwd_) {
     //假设服务器密码123456
-    char *otigin = "123456";
-    char *fromUser = jstringToChar(env, pwd_);
+    const char *otigin = "123456"; //char *背后的含义是：给我个字符串，我要修改它。 const char * 这个类型说背后的含义是：给我个字符串，我只要读取它。
+    const char *fromUser = jstringToChar(env, pwd_);
     //函数比较字符串是否相同
     int code = strcmp(otigin, fromUser);
     if (code == 0) {

@@ -57,18 +57,32 @@ public class NDK  {
     //=======================================>C调java
 
     /**
-     * C代码调addInt(int a, int b)方法
+     * C代码调NDK类中的addInt(int a, int b)方法
      */
     public static native void ccallBackAddInt();
 
     /**
-     * 创建Student信息
+     * C代码调NDK类中的setStrign(String s)方法
+     */
+    public static native void ccallBackGetString();
+
+    /**
+     * C代码调NDK类中的addInts(int a, int b)静态方法
+     */
+    public static native void ccallBackAddIntS();
+
+    /**
+     * C代码调NDK类中的setStrigs(String s)静态方法
+     */
+    public static native void ccallBackGetStringS();
+    /**
+     * C代码调用创建Student信息
      * @return
      */
     public static native Student getStudentInfo();
 
     /**
-     * 更新Student信息
+     * C代码调用更新Student信息
      * @param student
      * @return
      */
