@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_green_dao_avtivity"
     android:layout_width="match_parent"
@@ -8,39 +9,111 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.libin.factory.activity.GreenDaoAvtivity">
+    tools:context="com.libin.factory.activity.GreenDaoAvtivity"
+    tools:layout_editor_absoluteY="81dp"
+    tools:layout_editor_absoluteX="0dp">
 
     <Button
         android:text="增"
-        android:layout_width="wrap_content"
+        android:layout_width="88dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/btn_add" />
+        android:id="@+id/btn_add"
+        app:layout_constraintRight_toLeftOf="@+id/btn_delete"
+        app:layout_constraintLeft_toRightOf="@+id/btn_update"
+        app:layout_constraintTop_toTopOf="@+id/btn_delete"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_delete"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:text="删"
-        android:layout_width="wrap_content"
+        android:layout_width="88dp"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/btn_add"
         android:layout_toEndOf="@+id/btn_add"
-        android:layout_marginStart="14dp"
-        android:id="@+id/btn_delete" />
+        android:id="@+id/btn_delete"
+        app:layout_constraintRight_toLeftOf="@+id/btn_query"
+        app:layout_constraintLeft_toRightOf="@+id/btn_add"
+        app:layout_constraintTop_toTopOf="@+id/btn_query"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_query" />
 
     <Button
         android:text="改"
-        android:layout_width="wrap_content"
+        android:layout_width="88dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_toEndOf="@+id/btn_delete"
-        android:layout_marginStart="22dp"
-        android:id="@+id/btn_update" />
+        android:id="@+id/btn_update"
+        app:layout_constraintRight_toLeftOf="@+id/btn_add"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btn_add"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_add" />
 
     <Button
         android:text="查"
-        android:layout_width="wrap_content"
+        android:layout_width="88dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/btn_add"
         android:layout_alignParentStart="true"
-        android:id="@+id/btn_query" />
-</RelativeLayout>
+        android:id="@+id/btn_query"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/btn_delete"
+        tools:layout_constraintTop_creator="1"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="88dp"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        app:layout_constraintRight_toLeftOf="@+id/button2"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/button2"
+        app:layout_constraintTop_toTopOf="@+id/button2" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="88dp"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        app:layout_constraintRight_toLeftOf="@+id/button3"
+        app:layout_constraintLeft_toRightOf="@+id/button"
+        app:layout_constraintBottom_toBottomOf="@+id/button3"
+        app:layout_constraintTop_toTopOf="@+id/button3" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="88dp"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        app:layout_constraintRight_toLeftOf="@+id/button7"
+        app:layout_constraintLeft_toRightOf="@+id/button2"
+        app:layout_constraintBottom_toBottomOf="@+id/button7"
+        app:layout_constraintTop_toTopOf="@+id/button7" />
+
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="88dp"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/button3"
+        tools:layout_constraintTop_creator="1"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/btn_query" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_green_dao"
+        android:layout_width="312dp"
+        android:layout_height="351dp"
+        tools:layout_constraintTop_creator="1"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/button"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+
+</android.support.constraint.ConstraintLayout>

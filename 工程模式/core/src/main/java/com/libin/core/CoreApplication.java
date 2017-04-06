@@ -10,10 +10,6 @@ import android.content.Context;
 public class CoreApplication extends Application {
     private static CoreApplication coreApplication ;
 
-    /**
-     *
-     * @return
-     */
     public static Context getContext(){
         return coreApplication.getApplicationContext();
     }
@@ -22,7 +18,10 @@ public class CoreApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        coreApplication = this ;
+        if(coreApplication == null){
+            coreApplication = this ;
+        }
+
 
     }
 }

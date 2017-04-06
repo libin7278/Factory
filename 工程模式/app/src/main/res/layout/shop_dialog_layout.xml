@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#000000"
+    android:clickable="true"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#000000" />
+
+        <EditText
+            android:id="@+id/et_shop_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#00f0ff"
+            android:hint="商品信息: "
+            android:textColorHint="#77000000"
+            android:padding="20dp"
+            android:textColor="#000000"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#000000" />
+
+        <EditText
+            android:inputType="number"
+            android:textColorHint="#77000000"
+            android:id="@+id/et_shop_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#00f0ff"
+            android:hint="商品价格: "
+            android:padding="20dp"
+            android:textColor="#000000"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#000000" />
+
+    </LinearLayout>
+
+
+</FrameLayout>
