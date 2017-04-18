@@ -5,6 +5,8 @@ import android.text.TextUtils;
 import com.libin.factory.MainApplication;
 import com.libin.factory.green_dao.bean.ShopBean;
 import com.libin.factory.green_dao.dao.DaoSession;
+import com.libin.factory.green_dao.dao.ProcutedBeanDao;
+import com.libin.factory.green_dao.dao.SaleBeanDao;
 import com.libin.factory.green_dao.dao.ShopBeanDao;
 
 import java.util.List;
@@ -18,6 +20,8 @@ public class DbService {
     private static DbService instance;
     private DaoSession mDaoSession;
     private ShopBeanDao shopBeanDao;
+    private ProcutedBeanDao procutedBeanDao;
+    private SaleBeanDao saleBeanDao;
 
     private DbService() {
 
@@ -25,12 +29,14 @@ public class DbService {
 
     public static DbService getInstance() {
         if (instance == null) {
-            //获取Application的context 避免内存泄漏
+
             instance = new DbService();
         }
 
         instance.mDaoSession = MainApplication.getDaoSession();
         instance.shopBeanDao = MainApplication.getDaoSession().getShopBeanDao();
+        instance.procutedBeanDao = MainApplication.getDaoSession().getProcutedBeanDao();
+        instance.saleBeanDao = MainApplication.getDaoSession().getSaleBeanDao();
 
         return instance;
     }

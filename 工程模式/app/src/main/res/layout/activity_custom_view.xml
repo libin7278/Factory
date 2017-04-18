@@ -34,4 +34,10 @@
         android:layout_height="wrap_content"
         android:text="path" />
 
+    <Button
+        android:id="@+id/btn_shader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="shader" />
+
 </LinearLayout>

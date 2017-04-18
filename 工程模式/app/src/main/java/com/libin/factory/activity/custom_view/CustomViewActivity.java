@@ -14,6 +14,7 @@ public class CustomViewActivity extends AppCompatActivity {
     private Button btn_hew;
     private Button btn_path;
     private Button btn_paint;
+    private Button btn_shader;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +33,7 @@ public class CustomViewActivity extends AppCompatActivity {
         btn_qq_weather = (Button) findViewById(R.id.btn_qq_weather);
         btn_paint = (Button) findViewById(R.id.btn_paint);
         btn_path = (Button) findViewById(R.id.btn_path);
+        btn_shader = (Button) findViewById(R.id.btn_shader);
     }
 
     private void onClick() {
@@ -67,6 +69,13 @@ public class CustomViewActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(CustomViewActivity.this,PaintActivity.class));
+            }
+        });
+
+        btn_shader.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(CustomViewActivity.this,ShaderActivity.class));
             }
         });
     }

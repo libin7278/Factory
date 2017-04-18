@@ -36,8 +36,10 @@
         <activity android:name=".activity.custom_view.CustomQQWActivity" />
         <activity android:name=".activity.custom_view.PathActivity" />
         <activity android:name=".activity.custom_view.PaintActivity" />
-        <activity android:name=".widget.dialog.DialogActivity"
-            android:theme="@style/AlertDialog.AppCompat"/>
+        <activity
+            android:name=".widget.dialog.DialogActivity"
+            android:theme="@style/AlertDialog.AppCompat" />
+        <activity android:name=".activity.custom_view.ShaderActivity"></activity>
     </application>
 
 </manifest>

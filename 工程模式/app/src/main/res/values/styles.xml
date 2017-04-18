@@ -14,4 +14,16 @@
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowIsFloating">true</item>
     </style>
+
+    <declare-styleable name="RoundImageView">
+        <attr name="borderRadius" format="dimension" />
+        <attr name="type">
+            <enum name="circle" value="0" />
+            <enum name="round" value="1" />
+            <enum name="multi" value="3" />
+        </attr>
+        <attr name="angleCount" format="integer" />
+        <attr name="currentAngle" format="integer" />
+    </declare-styleable>
+
 </resources>

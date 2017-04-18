@@ -39,15 +39,18 @@ android {
     }
 
     greendao {
-        schemaVersion 1  //对应当前数据库版本
+        schemaVersion 3  //对应当前数据库版本
         daoPackage 'com.libin.factory.green_dao.dao' //由GreenDao自动生成代码所在的包名 自定义
         targetGenDir 'src/main/java' //设置自动生成代码的目录
     }
-
-
     sourceSets { main { jni.srcDirs = ['src/main/jni', 'src/main/jni/2'] } }
 }
 
+repositories{
+    flatDir {
+        dirs 'libs'
+    }
+}
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
@@ -61,4 +64,5 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha8'
     compile 'com.android.support:recyclerview-v7:25.3.0'
     testCompile 'junit:junit:4.12'
+    //compile(name:'imageloader-release', ext:'aar')
 }

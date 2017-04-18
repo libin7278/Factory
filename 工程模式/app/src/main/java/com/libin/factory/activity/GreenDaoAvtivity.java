@@ -14,7 +14,12 @@ import com.libin.core.base.BaseActivity;
 import com.libin.factory.MainApplication;
 import com.libin.factory.R;
 import com.libin.factory.green_dao.adapter.ShopAdapter;
+import com.libin.factory.green_dao.bean.ProcutedBean;
+import com.libin.factory.green_dao.bean.SaleBean;
 import com.libin.factory.green_dao.bean.ShopBean;
+import com.libin.factory.green_dao.dao.ProcutedBeanDao;
+import com.libin.factory.green_dao.dao.SaleBeanDao;
+import com.libin.factory.green_dao.dao.ShopBeanDao;
 import com.libin.factory.green_dao.util.DbService;
 import com.libin.factory.widget.dialog.InfoDialogFragment;
 import com.orhanobut.logger.Logger;
@@ -112,14 +117,69 @@ public class GreenDaoAvtivity extends BaseActivity implements InfoDialogFragment
         btn_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //deleteDate();
+                //1:1
+                ProcutedBean procutedBean = new ProcutedBean();
+                procutedBean.setId(12l); //这里的id和shopBean中的p_id保持一致
+                procutedBean.setCity("杭州");
+                procutedBean.setCompany("阿里");
 
+                ProcutedBean procutedBean1 = new ProcutedBean(); //1:1会更新 从而关联最后一个
+                procutedBean1.setId(11l); //这里的id和shopBean中的p_id保持一致
+                procutedBean1.setCity("杭州1");
+                procutedBean1.setCompany("阿里1");
+
+                ShopBean shopBean = new ShopBean();
+                shopBean.setP_id(12l);
+                shopBean.setId(null);//Long,我们设置了id是自增长,我们可以setId(null),便是自增长。如果是long类型，你设置setId(null)，就报空指针。
+                shopBean.setType(ShopBean.TYPE_LOVE);
+                shopBean.setAddress("广东深圳");
+                shopBean.setImage_url("https://img.alicdn.com/bao/uploaded/i2/TB1N4V2PXXXXXa.XFXXXXXXXXXX_!!0-item_pic.jpg_640x640q50.jpg");
+                shopBean.setPrice("20");
+                shopBean.setSell_num(15263);
+                shopBean.setName("那大叔空间大卡司");
+
+                ProcutedBeanDao procutedBeanDao = MainApplication.getDaoSession().getProcutedBeanDao();
+                ShopBeanDao shopBeanDao = MainApplication.getDaoSession().getShopBeanDao();
+                procutedBeanDao.insertOrReplace(procutedBean);
+                procutedBeanDao.insertOrReplace(procutedBean1);
+                shopBeanDao.insertOrReplace(shopBean);
+
+                List<ShopBean> list = shopBeanDao.queryBuilder().build().list();
+                for(ShopBean shopBean1 : list){
+                    Logger.e(shopBean1.toString());
+                }
             }
         });
         btn_update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //updateDate();
+                //1:n
+                SaleBean saleBean = new SaleBean();
+                saleBean.setId(null);
+                saleBean.setS_id(10l);
+                saleBean.setSName("特级1");
+
+                SaleBean saleBean1 = new SaleBean();
+                saleBean1.setId(null);
+                saleBean1.setS_id(10l);
+                saleBean1.setSName("特级2");
+
+                ShopBean shopBean = new ShopBean();
+                shopBean.setS_id(10l);
+                shopBean.setId(null);//Long,我们设置了id是自增长,我们可以setId(null),便是自增长。如果是long类型，你设置setId(null)，就报空指针。
+                shopBean.setType(ShopBean.TYPE_LOVE);
+                shopBean.setAddress("广东深圳");
+                shopBean.setImage_url("https://img.alicdn.com/bao/uploaded/i2/TB1N4V2PXXXXXa.XFXXXXXXXXXX_!!0-item_pic.jpg_640x640q50.jpg");
+                shopBean.setPrice("20");
+                shopBean.setSell_num(15263);
+                shopBean.setName("那大叔空间大卡司111111");
+
+                SaleBeanDao saleBeanDao = MainApplication.getDaoSession().getSaleBeanDao();
+                saleBeanDao.insertOrReplace(saleBean);
+                saleBeanDao.insertOrReplace(saleBean1);
+                ShopBeanDao shopBeanDao = MainApplication.getDaoSession().getShopBeanDao();
+                shopBeanDao.insertOrReplace(shopBean);
+
             }
         });
         btn_query.setOnClickListener(new View.OnClickListener() {

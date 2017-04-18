@@ -1,10 +1,17 @@
-package qdx.radarview.shader;
+package com.libin.factory.utils;
 
 
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
 
 public class BmpUtils {
+    /**
+     * 图片缩放
+     * @param bm
+     * @param newWidth 新的宽度
+     * @param newHeight 新的高度
+     * @return
+     */
     public static Bitmap zoomImg(Bitmap bm, int newWidth, int newHeight) {
         // 获得图片的宽高
         int width = bm.getWidth();

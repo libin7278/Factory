@@ -1,9 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:lb="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.libin.factory.activity.custom_view.ShaderActivity">
+    tools:context="com.libin.factory.activity.custom_view.ShaderActivity"
+    tools:layout_editor_absoluteX="0dp"
+    tools:layout_editor_absoluteY="81dp">
+
+    <!--<com.libin.factory.widget.BitmapShader.ShaderView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:src="@drawable/dlw"-->
+    <!--android:scaleType="centerCrop"/>-->
+
+    <!--<com
+    .libin.factory.widget.BitmapShader.Circle-->
+    <!--android:layout_width="50dp"-->
+    <!--android:layout_height="50dp"/>-->
+
+
+    <!--<com.libin.factory.widget.BitmapShader.FivePointedStar-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"/>-->
+
+    <com.libin.factory.widget.BitmapShader.MultiView
+        android:id="@+id/multiView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/dlw"
+        lb:angleCount="6"
+        lb:type="multi"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        lb:layout_constraintBottom_toBottomOf="@+id/multiView10"
+        lb:layout_constraintRight_toRightOf="@+id/multiView3"
+        tools:layout_constraintLeft_creator="1"
+        lb:layout_constraintLeft_toLeftOf="@+id/multiView3"
+        lb:layout_constraintTop_toTopOf="@+id/multiView10" />
+
+    <com.libin.factory.widget.BitmapShader.MultiView
+        android:id="@+id/multiView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/dlw"
+        lb:type="circle"
+        tools:layout_constraintTop_creator="1"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        tools:layout_constraintLeft_creator="1"
+        lb:layout_constraintLeft_toLeftOf="parent"
+        lb:layout_constraintTop_toTopOf="parent" />
+
+    <com.libin.factory.widget.BitmapShader.MultiView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/dlw"
+        lb:angleCount="5"
+        lb:type="multi"
+        android:id="@+id/multiView3"
+        tools:layout_constraintBottom_creator="1"
+        lb:layout_constraintBottom_toTopOf="@+id/multiView2"
+        android:layout_marginStart="16dp"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_marginBottom="8dp"
+        lb:layout_constraintLeft_toLeftOf="parent" />
+
+    <com.libin.factory.widget.BitmapShader.MultiView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/dlw"
+        lb:angleCount="3"
+        lb:type="multi"
+        android:id="@+id/multiView4"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        android:layout_marginEnd="44dp"
+        lb:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="8dp"
+        lb:layout_constraintTop_toTopOf="parent" />
+
+    <com.libin.factory.widget.BitmapShader.MultiView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/dlw"
+        lb:angleCount="20"
+        lb:type="multi"
+        android:id="@+id/multiView11"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        lb:layout_constraintRight_toRightOf="@+id/multiView4"
+        android:layout_marginTop="8dp"
+        lb:layout_constraintTop_toBottomOf="@+id/multiView4"
+        tools:layout_constraintLeft_creator="1"
+        lb:layout_constraintLeft_toLeftOf="@+id/multiView4" />
+
+    <com.libin.factory.widget.BitmapShader.MultiView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/dlw"
+        lb:type="round"
+        android:id="@+id/multiView10"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        lb:layout_constraintRight_toRightOf="@+id/multiView11"
+        android:layout_marginTop="8dp"
+        lb:layout_constraintTop_toBottomOf="@+id/multiView11"
+        tools:layout_constraintLeft_creator="1"
+        lb:layout_constraintLeft_toLeftOf="@+id/multiView11" />
 
 </android.support.constraint.ConstraintLayout>

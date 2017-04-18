@@ -1,13 +1,18 @@
 package com.libin.factory.green_dao.dao;
 
+import java.util.List;
+import java.util.ArrayList;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteStatement;
 
 import org.greenrobot.greendao.AbstractDao;
 import org.greenrobot.greendao.Property;
+import org.greenrobot.greendao.internal.SqlUtils;
 import org.greenrobot.greendao.internal.DaoConfig;
 import org.greenrobot.greendao.database.Database;
 import org.greenrobot.greendao.database.DatabaseStatement;
+
+import com.libin.factory.green_dao.bean.ProcutedBean;
 
 import com.libin.factory.green_dao.bean.ShopBean;
 
@@ -27,11 +32,15 @@ public class ShopBeanDao extends AbstractDao<ShopBean, Long> {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
         public final static Property Name = new Property(1, String.class, "name", false, "NAME");
         public final static Property Price = new Property(2, String.class, "price", false, "price");
-        public final static Property Sell_num = new Property(3, int.class, "sell_num", false, "SELL_NUM");
-        public final static Property Image_url = new Property(4, String.class, "image_url", false, "IMAGE_URL");
-        public final static Property Address = new Property(5, String.class, "address", false, "ADDRESS");
-        public final static Property Type = new Property(6, int.class, "type", false, "TYPE");
+        public final static Property P_id = new Property(3, Long.class, "p_id", false, "P_ID");
+        public final static Property S_id = new Property(4, Long.class, "s_id", false, "S_ID");
+        public final static Property Sell_num = new Property(5, int.class, "sell_num", false, "SELL_NUM");
+        public final static Property Image_url = new Property(6, String.class, "image_url", false, "IMAGE_URL");
+        public final static Property Address = new Property(7, String.class, "address", false, "ADDRESS");
+        public final static Property Type = new Property(8, int.class, "type", false, "TYPE");
     }
+
+    private DaoSession daoSession;
 
 
     public ShopBeanDao(DaoConfig config) {
@@ -40,6 +49,7 @@ public class ShopBeanDao extends AbstractDao<ShopBean, Long> {
     
     public ShopBeanDao(DaoConfig config, DaoSession daoSession) {
         super(config, daoSession);
+        this.daoSession = daoSession;
     }
 
     /** Creates the underlying database table. */
@@ -49,10 +59,12 @@ public class ShopBeanDao extends AbstractDao<ShopBean, Long> {
                 "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT ," + // 0: id
                 "\"NAME\" TEXT UNIQUE ," + // 1: name
                 "\"price\" TEXT," + // 2: price
-                "\"SELL_NUM\" INTEGER NOT NULL ," + // 3: sell_num
-                "\"IMAGE_URL\" TEXT," + // 4: image_url
-                "\"ADDRESS\" TEXT," + // 5: address
-                "\"TYPE\" INTEGER NOT NULL );"); // 6: type
+                "\"P_ID\" INTEGER," + // 3: p_id
+                "\"S_ID\" INTEGER," + // 4: s_id
+                "\"SELL_NUM\" INTEGER NOT NULL ," + // 5: sell_num
+                "\"IMAGE_URL\" TEXT," + // 6: image_url
+                "\"ADDRESS\" TEXT," + // 7: address
+                "\"TYPE\" INTEGER NOT NULL );"); // 8: type
     }
 
     /** Drops the underlying database table. */
@@ -79,18 +91,28 @@ public class ShopBeanDao extends AbstractDao<ShopBean, Long> {
         if (price != null) {
             stmt.bindString(3, price);
         }
-        stmt.bindLong(4, entity.getSell_num());
+ 
+        Long p_id = entity.getP_id();
+        if (p_id != null) {
+            stmt.bindLong(4, p_id);
+        }
+ 
+        Long s_id = entity.getS_id();
+        if (s_id != null) {
+            stmt.bindLong(5, s_id);
+        }
+        stmt.bindLong(6, entity.getSell_num());
  
         String image_url = entity.getImage_url();
         if (image_url != null) {
-            stmt.bindString(5, image_url);
+            stmt.bindString(7, image_url);
         }
  
         String address = entity.getAddress();
         if (address != null) {
-            stmt.bindString(6, address);
+            stmt.bindString(8, address);
         }
-        stmt.bindLong(7, entity.getType());
+        stmt.bindLong(9, entity.getType());
     }
 
     @Override
@@ -111,18 +133,34 @@ public class ShopBeanDao extends AbstractDao<ShopBean, Long> {
         if (price != null) {
             stmt.bindString(3, price);
         }
-        stmt.bindLong(4, entity.getSell_num());
+ 
+        Long p_id = entity.getP_id();
+        if (p_id != null) {
+            stmt.bindLong(4, p_id);
+        }
+ 
+        Long s_id = entity.getS_id();
+        if (s_id != null) {
+            stmt.bindLong(5, s_id);
+        }
+        stmt.bindLong(6, entity.getSell_num());
  
         String image_url = entity.getImage_url();
         if (image_url != null) {
-            stmt.bindString(5, image_url);
+            stmt.bindString(7, image_url);
         }
  
         String address = entity.getAddress();
         if (address != null) {
-            stmt.bindString(6, address);
+            stmt.bindString(8, address);
         }
-        stmt.bindLong(7, entity.getType());
+        stmt.bindLong(9, entity.getType());
+    }
+
+    @Override
+    protected final void attachEntity(ShopBean entity) {
+        super.attachEntity(entity);
+        entity.__setDaoSession(daoSession);
     }
 
     @Override
@@ -136,10 +174,12 @@ public class ShopBeanDao extends AbstractDao<ShopBean, Long> {
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
             cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // name
             cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // price
-            cursor.getInt(offset + 3), // sell_num
-            cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // image_url
-            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // address
-            cursor.getInt(offset + 6) // type
+            cursor.isNull(offset + 3) ? null : cursor.getLong(offset + 3), // p_id
+            cursor.isNull(offset + 4) ? null : cursor.getLong(offset + 4), // s_id
+            cursor.getInt(offset + 5), // sell_num
+            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // image_url
+            cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // address
+            cursor.getInt(offset + 8) // type
         );
         return entity;
     }
@@ -149,10 +189,12 @@ public class ShopBeanDao extends AbstractDao<ShopBean, Long> {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
         entity.setName(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
         entity.setPrice(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
-        entity.setSell_num(cursor.getInt(offset + 3));
-        entity.setImage_url(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
-        entity.setAddress(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
-        entity.setType(cursor.getInt(offset + 6));
+        entity.setP_id(cursor.isNull(offset + 3) ? null : cursor.getLong(offset + 3));
+        entity.setS_id(cursor.isNull(offset + 4) ? null : cursor.getLong(offset + 4));
+        entity.setSell_num(cursor.getInt(offset + 5));
+        entity.setImage_url(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
+        entity.setAddress(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
+        entity.setType(cursor.getInt(offset + 8));
      }
     
     @Override
@@ -180,4 +222,95 @@ public class ShopBeanDao extends AbstractDao<ShopBean, Long> {
         return true;
     }
     
+    private String selectDeep;
+
+    protected String getSelectDeep() {
+        if (selectDeep == null) {
+            StringBuilder builder = new StringBuilder("SELECT ");
+            SqlUtils.appendColumns(builder, "T", getAllColumns());
+            builder.append(',');
+            SqlUtils.appendColumns(builder, "T0", daoSession.getProcutedBeanDao().getAllColumns());
+            builder.append(" FROM SHOP_BEAN T");
+            builder.append(" LEFT JOIN PROCUTED_BEAN T0 ON T.\"P_ID\"=T0.\"_id\"");
+            builder.append(' ');
+            selectDeep = builder.toString();
+        }
+        return selectDeep;
+    }
+    
+    protected ShopBean loadCurrentDeep(Cursor cursor, boolean lock) {
+        ShopBean entity = loadCurrent(cursor, 0, lock);
+        int offset = getAllColumns().length;
+
+        ProcutedBean procutedBean = loadCurrentOther(daoSession.getProcutedBeanDao(), cursor, offset);
+        entity.setProcutedBean(procutedBean);
+
+        return entity;    
+    }
+
+    public ShopBean loadDeep(Long key) {
+        assertSinglePk();
+        if (key == null) {
+            return null;
+        }
+
+        StringBuilder builder = new StringBuilder(getSelectDeep());
+        builder.append("WHERE ");
+        SqlUtils.appendColumnsEqValue(builder, "T", getPkColumns());
+        String sql = builder.toString();
+        
+        String[] keyArray = new String[] { key.toString() };
+        Cursor cursor = db.rawQuery(sql, keyArray);
+        
+        try {
+            boolean available = cursor.moveToFirst();
+            if (!available) {
+                return null;
+            } else if (!cursor.isLast()) {
+                throw new IllegalStateException("Expected unique result, but count was " + cursor.getCount());
+            }
+            return loadCurrentDeep(cursor, true);
+        } finally {
+            cursor.close();
+        }
+    }
+    
+    /** Reads all available rows from the given cursor and returns a list of new ImageTO objects. */
+    public List<ShopBean> loadAllDeepFromCursor(Cursor cursor) {
+        int count = cursor.getCount();
+        List<ShopBean> list = new ArrayList<ShopBean>(count);
+        
+        if (cursor.moveToFirst()) {
+            if (identityScope != null) {
+                identityScope.lock();
+                identityScope.reserveRoom(count);
+            }
+            try {
+                do {
+                    list.add(loadCurrentDeep(cursor, false));
+                } while (cursor.moveToNext());
+            } finally {
+                if (identityScope != null) {
+                    identityScope.unlock();
+                }
+            }
+        }
+        return list;
+    }
+    
+    protected List<ShopBean> loadDeepAllAndCloseCursor(Cursor cursor) {
+        try {
+            return loadAllDeepFromCursor(cursor);
+        } finally {
+            cursor.close();
+        }
+    }
+    
+
+    /** A raw-style query where you can pass any WHERE clause and arguments. */
+    public List<ShopBean> queryDeep(String where, String... selectionArg) {
+        Cursor cursor = db.rawQuery(getSelectDeep() + where, selectionArg);
+        return loadDeepAllAndCloseCursor(cursor);
+    }
+ 
 }
